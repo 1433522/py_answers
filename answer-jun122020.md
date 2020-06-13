@@ -231,7 +231,7 @@ $cat file3.txt
 答：
 ```
 >>>import os 
->>> os.getcwd() # 获取当前工作目录j
+>>> os.getcwd() # 获取当前工作目录
 '/home/zzx/Projects/answers'
 >>> os.chdir('/') # 切换至文件系统根目录
 >>> os.getcwd()
@@ -240,7 +240,17 @@ $cat file3.txt
 >>> os.getcwd()
 '/home/zzx'
 ```
-# 21.10 请写 Python 代码,在当前目录下新建一个 week15 目录,在week015目录下新建一个名为temp.py的文本文件,向其中写入文本 print('Hello World!') ,然后将其删除。
+# 21.10 请写 Python 代码,展示 /etc 目录下的内容 (目录和文件),并判断该目录下的 profile 名称是目录还是文件。
+答：
+```
+>>> import os
+>>> os.listdir('/etc')
+['crontab', 'lsb-release', 'gtk-3.0', 'vim', 'ssl', 'update-manager', 'lighttpd', 'udev', 'pnm2ppa.conf', 'cups', 'vtrgb', 'update-motd.d', 'bindresvport.blacklist', 'bash_completion.d', 'PackageKit', 'wpa_supplicant', 'gtk-2.0', 'netplan', 'gshadow', 'cron.d', 'v2rayL', 'ldap', 'sane.d', 'zsh_command_not_found', 'issue.net', 'hosts', 'insserv.conf.d', 'login.defs', 'mke2fs.conf', 'locale.alias', 'cron.hourly', 'os-release', 'pki', 'vdpau_wrapper.cfg', 'modules-load.d', 'dconf', 'perl', 'rpc', 'networks', 'apparmor.d', 'mime.types', 'rc0.d', 'sslocal.json', 'deluser.conf', 'rc5.d', 'timezone', 'ca-certificates.conf', '.pwd.lock', 'locale.gen', 'rc4.d', 'skel', 'gshadow-', 'tmpfiles.d', 'subgid-', 'pulse', 'newt', 'fonts', 'magic', 'mtab', 'pm', 'calendar', 'libreoffice', 'services', 'rc2.d', 'inputrc', 'acpi', 'ufw', 'brltty.conf', 'host.conf', 'avahi', 'apg.conf', 'ld.so.cache', 'appstream.conf', 'python3', 'environment', 'apport', 'ld.so.conf.d', 'networkd-dispatcher', 'pam.conf', 'sysctl.conf', 'binfmt.d', 'securetty', 'udisks2', 'mailcap', 'dnsmasq.conf', 'sudoers.d', 'grub.d', 'resolvconf', 'python2.7', 'console-setup', 'printcap', 'terminfo', 'hostname', 'proxychains.conf', 'hostid', 'anacrontab', 'apache2', 'rarfiles.lst', 'rcS.d', 'fuse.conf', 'ifplugd', 'libblockdev', 'popularity-contest.conf', 'modprobe.d', 'vconsole.conf', 'libaudit.conf', 'bash_completion', 'brltty', 'speech-dispatcher', 'X11', 'python3.7', 'dhcp', 'kernel', 'pcmcia', 'adduser.conf', 'geoclue', 'usb_modeswitch.d', 'sudoers', 'manpath.config', 'rc.local', 'protocols', 'ssh', 'rc1.d', 'apt', 'libao.conf', 'ImageMagick-6', 'group-', 'passwd-', 'shadow', 'debconf.conf', 'bluetooth', 'group', 'cracklib', 'hp', 'environment.d', 'opt', 'alternatives', 'default', 'magic.mime', 'kerneloops.conf', 'fstab', 'ppp', 'shadow-', 'rc6.d', 'mysql', 'groff', 'thunderbird', 'emacs', 'rmt', 'hosts.deny', 'ubuntu-advantage', 'firefox', 'init', 'ltrace.conf', 'chromium-browser', 'rsyslog.d', 'sysctl.d', 'papersize', 'apm', 'openvpn', 'rc3.d', 'bash.bashrc', 'resolv.conf', 'dpkg', 'iproute2', 'gai.conf', 'passwd', 'snmp', 'kernel-img.conf', 'logrotate.conf', 'ca-certificates', 'apparmor', 'initramfs-tools', 'whoopsie', 'legal', 'logrotate.d', 'fprintd.conf', 'mtools.conf', 'depmod.d', 'chatscripts', 'rsyslog.conf', 'gconf', 'security', 'alsa', 'init.d', 'ucf.conf', 'polkit-1', 'cron.weekly', 'cron.monthly', 'UPower', 'nsswitch.conf', 'gss', 'xdg', 'vulkan', 'subuid', 'libpaper.d', 'sensors.d', 'v2ray', 'cupshelpers', 'brlapi.key', 'e2scrub.conf', 'dictionaries-common', 'usb_modeswitch.conf', 'gdm3', 'pam.d', 'ghostscript', 'polipo', 'ld.so.conf', 'logcheck', 'modules', 'mailcap.order', 'libnl-3', 'nanorc', 'xattr.conf', 'thermald', 'issue', 'subuid-', 'machine-id', 'wgetrc', 'network', 'hdparm.conf', 'selinux', 'NetworkManager', 'gnome', 'systemd', 'subgid', 'mecabrc', 'cron.daily', 'profile.d', 'update-notifier', 'dbus-1', 'localtime', 'fwupd', 'gdb', 'hosts.allow', 'rygel.conf', 'shells', 'debian_version', 'sensors3.conf', 'python', 'profile', 'glvnd']
+>>> os.path.isfile('/etc/profile')
+True
+```
+
+# 21.11 请写 Python 代码,在当前目录下新建一个 week15 目录,在week15目录下新建一个名为temp.py的文本文件,向其中写入文本 print('Hello World!') ,然后将其删除。
 答：
 ```
 >>> import os,pathlib
@@ -253,3 +263,22 @@ $cat file3.txt
 >>> f.close()
 >>> os.remove('week15/temp.py') #删除temp.py
 ```
+
+# 21.12 请写 Python 代码,计算 datetime 模块的源代码的目录名、文件名和扩展名,并在此基础上获取其所在目录下的其他目录名和文件名。
+答：
+```
+>>> import os,datetime
+>>> p = datetime.__file__
+>>> p
+'/usr/lib/python3.7/datetime.py'
+(path,filename) = os.path.split(p)
+>>> path
+'/usr/lib/python3.7'
+>>> filename
+'datetime.py'
+>>> ext = os.path.splitext(filename)[1]
+>>> os.listdir(path)
+['_bootlocale.py', 'xdrlib.py', 'zipfile.py', 'pdb.py', '_compat_pickle.py', 'rlcompleter.py', 'urllib', 'uuid.py', 'modulefinder.py', 'trace.py', 'abc.py', '_sysconfigdata_m_linux_x86_64-linux-gnu.py', 'csv.py', 'cmd.py', 'tabnanny.py', 'tty.py', 'cProfile.py', 'types.py', 'logging', 'random.py', 'numbers.py', 'glob.py', 'keyword.py', 'lib2to3', 'socketserver.py', 'dummy_threading.py', 'sysconfig.py', 'py_compile.py', 'mailcap.py', 'calendar.py', '__future__.py', 'netrc.py', 'imaplib.py', '_threading_local.py', 'pickle.py', 'symtable.py', 'plistlib.py', 'filecmp.py', 'compileall.py', 'aifc.py', 'fnmatch.py', '_dummy_thread.py', 'io.py', 'timeit.py', 'sitecustomize.py', 'weakref.py', 'reprlib.py', 'base64.py', 'pty.py', 'socket.py', 'LICENSE.txt', '_compression.py', 'gzip.py', 'warnings.py', 'bdb.py', 'pydoc_data', 'enum.py', 'traceback.py', 'stringprep.py', 'html', 'locale.py', 'heapq.py', 'os.py', 'distutils', 'decimal.py', 'sqlite3', 'asynchat.py', 'shutil.py', 'encodings', 'stat.py', 'lib-dynload', 'telnetlib.py', 'ntpath.py', 'bisect.py', 'smtpd.py', 'pprint.py', 'ensurepip', 'contextlib.py', 'json', 'tempfile.py', 'optparse.py', 'concurrent', 'genericpath.py', 'textwrap.py', 'site.py', 'subprocess.py', 'code.py', 'smtplib.py', 'profile.py', 'webbrowser.py', 'antigravity.py', 'difflib.py', 'turtle.py', '_weakrefset.py', 'secrets.py', 'mailbox.py', 'poplib.py', '_pyio.py', 'formatter.py', 'nturl2path.py', 'venv', 'dataclasses.py', '_osx_support.py', 'hmac.py', 'runpy.py', 'cgitb.py', 'fractions.py', '_sitebuiltins.py', 'copyreg.py', '_collections_abc.py', 'operator.py', '_pydecimal.py', 'pickletools.py', 'collections', 'signal.py', 'email', 'mimetypes.py', 'shlex.py', 'getopt.py', 'imghdr.py', 'pipes.py', 'macpath.py', 'pstats.py', 'argparse.py', 'ssl.py', 'functools.py', 'linecache.py', 'sre_constants.py', 'platform.py', 'sched.py', 'colorsys.py', 'lzma.py', 'curses', 'inspect.py', 'test', 'tokenize.py', 'fileinput.py', 'xml', 'queue.py', 'codeop.py', 'posixpath.py', 'wsgiref', '_py_abc.py', 'typing.py', 'quopri.py', 'tarfile.py', 'asyncore.py', 'ast.py', 'ctypes', 'bz2.py', 'getpass.py', 'configparser.py', 'struct.py', 'sre_parse.py', 'token.py', 'this.py', 'statistics.py', 'ftplib.py', 'sre_compile.py', '_strptime.py', 'crypt.py', 'pyclbr.py', 'zipapp.py', 'ipaddress.py', 'pathlib.py', 'string.py', 'threading.py', 'shelve.py', '__phello__.foo.py', '__pycache__', 're.py', 'dbm', 'doctest.py', 'pydoc.py', 'symbol.py', 'importlib', 'multiprocessing', 'sunau.py', 'copy.py', 'pkgutil.py', 'asyncio', 'binhex.py', 'nntplib.py', 'uu.py', 'http', 'wave.py', 'tracemalloc.py', 'unittest', 'hashlib.py', '_markupbase.py', 'opcode.py', 'dis.py', 'imp.py', 'config-3.7m-x86_64-linux-gnu', 'cgi.py', 'sndhdr.py', 'gettext.py', 'xmlrpc', 'contextvars.py', 'selectors.py', 'codecs.py', 'chunk.py', 'datetime.py']
+```
+
+
