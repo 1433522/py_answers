@@ -179,4 +179,77 @@ $python3
 >>>f.read()
 '好这是我的abcdefg'
 ```
+# 21.7 请写代码,以编码(encoding)的概念为基础,演示读/写文本(text)文件与读/写二进制(binary)的等价操作。
+答：
+```
+>>>f2 = open('file2.txt','w')
+>>>f2.write('我爱学习')
+>>>f2.close()
+$cat file2.txt
+我爱学习
+>>>f2 = open('file2.txt','rb')
+>>>content = f2.read()
+>>>content
+b'\xe6\x88\x91\xe7\x88\xb1\xe5\xad\xa6\xe4\xb9\xa0'
+>>>f2.close()
+>>>f3 = open('file3.txt','wb')
+>>>f3.write(content)
+>>>f3.close()
+$cat file3.txt
+我爱学习 
+```
+# 21.8 请写代码,演示通用换行符 (universal newline) 的概念,包括打开和关闭该功能,以及读写之间的差异。先演示写入,再演示读取。
+答：
+```
+>>>f4 = open('file4.txt',mode='w') #默认开启通用换行符功能
+>>>f4.write('a\r\nb\nc\rd')
+8
+>>>f4.close()
+>>>f4 = open('file4.txt',mode='r',newline='')
+>>>f4.read()
+'a\r\nb\nc\rd'
+>>>f4.close()
+>>>f4 = open('file4.txt',mode='r')
+>>>f4.read()  # '\r\n','\r'全部转化为'\n'
+'a\nb\nc\nd'
+>>>f4.close()
 
+>>>f5 = open('file5.txt',mode='w',newline='') #关闭通用换行符功能
+>>>f5.write('a\r\nb\nc\rd')
+>>>f5.close()
+>>>f5 = open('file5.txt',mode='r',newline='')
+>>>f5.read()
+'a\r\nb\nc\rd'
+>>>f5.close()
+>>>f5 = open('file5.txt',mode='r')
+>>>f5.read()
+'a\nb\nc\nd'
+>>>f5.close()
+```
+
+# 21.9 请写 Python 代码,获取当前工作目录,再把当前工作目录切换至文件系统根目录,再把当前目录切换至用户根目录。
+答：
+```
+>>>import os 
+>>> os.getcwd() # 获取当前工作目录j
+'/home/zzx/Projects/answers'
+>>> os.chdir('/') # 切换至文件系统根目录
+>>> os.getcwd()
+'/'
+>>> os.chdir('/home/zzx') # 切换至用户根目录
+>>> os.getcwd()
+'/home/zzx'
+```
+# 21.10 请写 Python 代码,在当前目录下新建一个 week15 目录,在week015目录下新建一个名为temp.py的文本文件,向其中写入文本 print('Hello World!') ,然后将其删除。
+答：
+```
+>>> import os,pathlib
+>>> p = pathlib.Path('week15')
+>>> p.mkdir()
+>>> fp = p / 'temp.py'
+>>> f = fp.open('w')
+>>> f.write("print('Hello World!')")
+21
+>>> f.close()
+>>> os.remove('week15/temp.py') #删除temp.py
+```
