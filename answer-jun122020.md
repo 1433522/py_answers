@@ -163,3 +163,20 @@ object) 才会 自动 向操作系统申请写入磁盘,并清空缓存 (buffer)
 
 # 21.6 请写代码,以读取 (read) 为例,演示文件位置 (position) 的概念,包括获取当前位置、移动当前位置等操作。
 答：用文件对象 (file object) 的 tell 方法可以获取当前位置 (position),用 seek 方法可以移动位置 (position) 至指定的字节数。
+
+```
+$cat file.txt 
+你好这是我的abcdefg
+$python3
+>>>f = open('file.txt','r')
+>>>f.tell()  # 获取当前位置
+0
+>>>f.read(3)  #读取3个字符
+'你好这'
+>>>f.tell()  #每个中文字符占用3个字节，每个英文字母占用1个字节
+9
+>>>f.seek(3) #移动位置至第4个字节
+>>>f.read()
+'好这是我的abcdefg'
+```
+
